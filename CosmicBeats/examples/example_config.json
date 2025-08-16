@@ -1,0 +1,162 @@
+
+{
+    "topologies":
+    [
+        {
+            "name": "Constln1",
+            "id": 0,
+            "nodes":
+            [
+                {
+                    "type": "SAT",
+                    "iname": "SatelliteBasic",
+                    "nodeid": 1008,
+                    "loglevel": "all",
+                    "tle_1": "1 44714U 19074B   24123.62997001  .00001414  00000+0  11384-3 0  9996", 
+                    "tle_2": "2 44714  53.0541 341.5638 0002338  82.4372 277.6883 15.06402037246856",
+                    "additionalargs": "",
+                    "models":[
+                        {
+                            "iname": "ModelOrbit"
+                        },
+                        {
+                            "iname": "ModelCDNProvider",
+                            "neighbors": [2579, 2698, 2654, 2685]
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                    
+                }, 
+                {
+                    "type": "SAT",
+                    "iname": "SatelliteBasic",
+                    "nodeid": 1341,
+                    "loglevel": "all",
+                    "tle_1": "1 45534U 20025D   24123.57100442  .00000087  00000+0  24732-4 0  9991", 
+                    "tle_2": "2 45534  53.0547 261.8336 0001476  95.5284 264.5873 15.06391019223183",
+                    "additionalargs": "",
+                    "models":[
+                        {
+                            "iname": "ModelOrbit"
+                        },
+                        {
+                            "iname": "ModelCDNProvider",
+                            "cache_size": 1000000,
+                            "cache_eviction_strategy": "LRU",
+                            "handle_requests_strategy": "check_local_only",
+                            "active_scheduling_strategy": "no_op",
+                            "neighbors": [1371, 1374, 2477, 2667]
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                    
+                },
+                {
+                    "type": "SAT",
+                    "iname": "SatelliteBasic",
+                    "nodeid": 2228,
+                    "loglevel": "all",
+                    "tle_1": "1 48576U 21041Z   24123.77741324  .00001125  00000+0  94387-4 0  9998", 
+                    "tle_2": "2 48576  53.0534 260.9019 0001328  93.2897 266.8244 15.06399804164133",
+                    "additionalargs": "",
+                    "models":[
+                        {
+                            "iname": "ModelOrbit"
+                        },
+                        {
+                            "iname": "ModelCDNProvider"
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                    
+                },
+                {
+                    "type": "SAT",
+                    "iname": "SatelliteBasic",
+                    "nodeid": 2457,
+                    "loglevel": "all",
+                    "tle_1": "1 48321U 21036AX  24123.63965027  .00004242  00000+0  30348-3 0  9992", 
+                    "tle_2": "2 48321  53.0525 256.5210 0000860 108.2191 251.8892 15.06404509166728",
+                    "additionalargs": "",
+                    "models":[
+                        {
+                            "iname": "ModelOrbit"
+                        },
+                        {
+                            "iname": "ModelCDNProvider"
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                    
+                },
+                {
+                    "type": "SAT",
+                    "iname": "SatelliteBasic",
+                    "nodeid": 2726,
+                    "loglevel": "all",
+                    "tle_1": "1 48662U 21044AA  24123.77511524  .00000493  00000+0  51987-4 0  9990", 
+                    "tle_2": "2 48662  53.0543 265.9125 0001187  87.8031 272.3094 15.06393895162816",
+                    "additionalargs": "",
+                    "models":[
+                        {
+                            "iname": "ModelOrbit"
+                        },
+                        {
+                            "iname": "ModelCDNProvider"
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                    
+                },
+                {
+                    "type": "User",
+                    "iname": "UserBasic",
+                    "nodeid": 3280,
+                    "loglevel": "all",
+                    "latitude": 36.514649,
+                    "longitude": -107.284051,
+                    "elevation": 0.0,
+                    "trace": "/home/xinzez2/cdn_emulator/examples/example_trace.txt",
+                    "additionalargs": "",
+                    
+                    "models":[
+                        {
+                            "iname": "ModelCDNUser"
+                        },
+                        {
+                            "iname": "ModelFovTimeBased",
+                            "min_elevation": 25
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "simtime":
+    {
+        "starttime": "2024-05-02 12:00:00",
+        "endtime": "2024-05-03 12:00:00",
+        "delta": 20
+    },
+    "simlogsetup":
+    {
+        "loghandler": "LoggerFileChunkwise",
+        "logfolder": "examples/log",
+        "logchunksize": 100
+    }
+}
