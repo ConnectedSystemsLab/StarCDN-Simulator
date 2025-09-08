@@ -94,5 +94,4 @@ if __name__ == "__main__":
 
     print(agg_hrc_res)
     print(agg_hrc_res[2] / agg_hrc_res[0], agg_hrc_res[3] / agg_hrc_res[1])
-    print(dict(latency_res))
-    print(sorted(time_aggr_hrc_res))
+
