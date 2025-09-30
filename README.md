@@ -31,6 +31,8 @@ min_elevation: minimum FoV elevation for a satellite to be scheduled.
 ```
 The minimum requirement to change the config file is to set the `trace` fields for all locations. We keed the trace location and path we used for our experiment but we don't save the actual traces in this repo.
 ### 2.2 Run Simulation
+Sidenote: run `unlimit -n 65535` if running into issues of too many opened files.
+
 Use `python3 main.py config_path` to run the simulation. Due to the limitaion of CosmicBeats, the program does not support multi-process. However, the time required to run our synthetic traces should be less than one day.
 ## 3. Run Cache Replayer
 Before proceeding to this section, user must finish Step 2 and have a log directory produced by CosmicBeats.

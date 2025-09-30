@@ -6,7 +6,7 @@ The current version of simulator offers the capability to simulate various facet
 We are thrilled to have you as a contributor to our project as our goal is to make this project community driven. Your valuable expertise and passion will play a vital role in shaping this space simulation platform for diverse research interests. Whether you are a developer, researcher, or enthusiast, there are plenty of opportunities to make a significant impact. Let's work together to create an exceptional and collaborative space simulation platform. 
 
 ## Design of the simulator
-![Simplified core architecture](/figs/simulator_architecture.svg)
+![Simplified core architecture](/CosmicBeats/figs/simulator_architecture.svg)
 
 At the core of our simulator are "nodes" and "models." A node represents a physical endpoint entity, such as satellites, ground stations, user terminals, IoT devices, among others. Each node consists of one or multiple models, each of which replicates the functionality or behavior of the corresponding node component. These models can represent software or hardware elements, such as satellite batteries or even the orbital movements of satellites. Importantly, the user can make zero-code configuration of the models within each node based on their specific simulation requirements. This customization ensures that the simulation setup remains tailored to the intended research purpose. 
 
@@ -17,23 +17,23 @@ Our simulator employs a discrete-time approach, executing simulated operations a
 With our space simulation platform, researchers can explore and contribute to a wide array of space-related research domains, thanks to its adaptable design and the ability to model diverse scenarios. You have the opportunity to contribute in various ways, such as introducing new nodes, models, SMAs, summarizers, APIs, and configs. Additionally, you can participate in fixing issues, enhancing computations, and much more. Your contributions are not limited, and we welcome your innovative ideas and improvements.
 
 ## Installation and setup
-The simulator is developed using Python. To get started, ensure you have the most recent version of Python installed. Use `pip` to install the required package listed in [requirements.txt](/requirements.txt), and you'll be ready to go.
+The simulator is developed using Python. To get started, ensure you have the most recent version of Python installed. Use `pip` to install the required package listed in [requirements.txt](/CosmicBeats/requirements.txt), and you'll be ready to go.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Anaconda can be used as well to setup the platform. Use [environment.yml](/environment.yml) to create the environment with required packages. 
+Anaconda can be used as well to setup the platform. Use [environment.yml](/CosmicBeats/environment.yml) to create the environment with required packages. 
 
 ## Quick start
-Running the initial simulation scenario is swift and simple; just execute the [main.py](/main.py)
+Running the initial simulation scenario is swift and simple; just execute the [main.py](/CosmicBeats/main.py)
 
 ```bash
 python main.py
 ```
 Upon execution, the simulator will output a sequence of logs in your terminal.
 
-If you wish to experiment with an alternative simulation configuration, you can provide the path to any configuration file from the [configs](/configs/) directory as an argument to the main.py script. 
+If you wish to experiment with an alternative simulation configuration, you can provide the path to any configuration file from the [configs](/CosmicBeats/configs/) directory as an argument to the main.py script. 
 
 ```bash
 python main.py configs/config.json
@@ -43,16 +43,16 @@ python main.py configs/config.json
 Most of the simulator's usage involves customizing the nodes and models within the config file. Therefore, it is essential to comprehend the concepts of nodes, models, and configuration to effectively utilize the simulator. 
 
 ### Node
-To learn about node, please refer to [this](/src/nodes/README.md).
+To learn about node, please refer to [this](/CosmicBeats/src/nodes/README.md).
 
 ### Model
-To learn about model, please refer to [this](/src/models/README.md).
+To learn about model, please refer to [this](/CosmicBeats/src/models/README.md).
 
 ### config
-The configuration of the simulation setup is maintained in a JSON file. To know more on how to work with the configuration file, please refer to [this](/configs/README.md).
+The configuration of the simulation setup is maintained in a JSON file. To know more on how to work with the configuration file, please refer to [this](/CosmicBeats/configs/README.md).
 
 ### Running the simulation
-The sole interface to the simulator is the [Simulator class](/src/sim/simulator.py), meaning that users can run the simulator by simply creating an instance of this class. 
+The sole interface to the simulator is the [Simulator class](/CosmicBeats/src/sim/simulator.py), meaning that users can run the simulator by simply creating an instance of this class. 
 
 ```Python
 from src.sim.simulator import Simulator
@@ -64,30 +64,30 @@ _sim.execute()
 ```
 The runtime APIs can also be accessed through the Simulator class by invoking `call_RuntimeAPIs()` method.
 
-To learn more about the Simulator class and architecture of the simulator, please refer to [this](/src/sim/README.md).
+To learn more about the Simulator class and architecture of the simulator, please refer to [this](/CosmicBeats/src/sim/README.md).
 
 ### Analytics
-The primary objective of a simulation is to generate insights, achieved by analyzing the logs produced by the simulator. As these insights are tailored to each specific use case, reusing the code written for analytics can be challenging. However, in our design, we prioritize creating an analytics pipeline that is highly adaptable and can be easily repurposed for various scenarios. To learn more about the analytics pipeline, please refer to [this](/src/analytics/README.md).
+The primary objective of a simulation is to generate insights, achieved by analyzing the logs produced by the simulator. As these insights are tailored to each specific use case, reusing the code written for analytics can be challenging. However, in our design, we prioritize creating an analytics pipeline that is highly adaptable and can be easily repurposed for various scenarios. To learn more about the analytics pipeline, please refer to [this](/CosmicBeats/src/analytics/README.md).
 
 ### Examples
 We will attempt to execute a series of end-to-end simulation examples. ** It is essential to note that the data utilized for these simulation examples may not accurately represent real-world values.** We have used public TLE files from [https://celestrak.org/](https://celestrak.org/). 
 
 #### Satellite based IoT network
-In this simulation, there are 1000 IoT devices on Earth that engage in direct communication with over 150 LEO (Low Earth Orbit) satellites. The satellites collect data from the IoT devices, store it onboard, and transmit the data to ground stations whenever an opportunity arises. Find the corresponding config file [here](/configs/examples/config_1000iot.json).
+In this simulation, there are 1000 IoT devices on Earth that engage in direct communication with over 150 LEO (Low Earth Orbit) satellites. The satellites collect data from the IoT devices, store it onboard, and transmit the data to ground stations whenever an opportunity arises. Find the corresponding config file [here](/CosmicBeats/configs/examples/config_1000iot.json).
 
 ```bash
  python examples/iotnetwork.py
 ```
 It might take a while since we are dealing with a large number of nodes.
 
-Once the simulation is complete, we are good to go for analyzing the logs and generating results. We have multiple sample scripts for log analysis available [here](/examples/analytics_sample/) that use our [SMAs and Summarizers](/src/analytics/) to analyze the logs and generate insights. For this example, we will use [analyze_datalayer.py](examples/analytics_sample/analyze_datalayer.py) to find end-to-end delay of our simulated IoT network. This script analyzes the logs stored in the `exampleLogs/` temporary directory and returns the results in several metrics.
+Once the simulation is complete, we are good to go for analyzing the logs and generating results. We have multiple sample scripts for log analysis available [here](/CosmicBeats/examples/analytics_sample/) that use our [SMAs and Summarizers](/CosmicBeats/src/analytics/) to analyze the logs and generate insights. For this example, we will use [analyze_datalayer.py](examples/analytics_sample/analyze_datalayer.py) to find end-to-end delay of our simulated IoT network. This script analyzes the logs stored in the `exampleLogs/` temporary directory and returns the results in several metrics.
 
 ```bash
 python -Wignore examples/analytics_samples/analyze_datalayer.py exampleLogs/
 ```
 
 #### Image satellite
-In this example, we simulate a constellation of satellites capturing earth image, called Earth Observation satellites. Find the corresponding config file [here](/configs/examples/config_imagesat.json).
+In this example, we simulate a constellation of satellites capturing earth image, called Earth Observation satellites. Find the corresponding config file [here](/CosmicBeats/configs/examples/config_imagesat.json).
 
 ```bash
  python examples/imagesatellite.py
@@ -99,19 +99,19 @@ python -Wignore examples/analytics_samples/analyze_power.py imagingLogs/
 ```
 
 ### Test
-We have provided several test cases [here](/src/test/). You can use `pytest` package to evaluate the tests.
+We have provided several test cases [here](/CosmicBeats/src/test/). You can use `pytest` package to evaluate the tests.
 ```bash
 pytest -Wignore src/test/
 ```
 
 ## License
-Please refer to [LICENSE.txt](/LICENSE.txt)
+Please refer to [LICENSE.txt](/CosmicBeats/LICENSE.txt)
 
 ## Security
-Please refer to [SECURITY.md](/SECURITY.md)
+Please refer to [SECURITY.md](/CosmicBeats/SECURITY.md)
 
 ## Support
-Please refer to [SUPPORT.md](/SUPPORT.md)
+Please refer to [SUPPORT.md](/CosmicBeats/SUPPORT.md)
 
 ## Contributing
 
