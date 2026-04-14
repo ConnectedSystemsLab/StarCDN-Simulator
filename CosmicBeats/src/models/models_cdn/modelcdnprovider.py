@@ -21,8 +21,6 @@ from src.models.models_cdn.cache.lru import LRU_Cache
 import json 
 import hashlib
 
-NUM_COLOR = 25 
-
 class ModelCDNProvider(IModel):
    
     __modeltag = EModelTag.VIEWOFNODE
@@ -183,12 +181,10 @@ class ModelCDNProvider(IModel):
         self.__byte_hit = 0
         self.__isl = [0, 0, 0, 0]
         self.__prefetch_strategy = _prefetch_strategy
-        # with open("../isl/sat_color_2_hops.json", "r") as f:
-        # with open("../isl/sat_color_3_hops.json", "r") as f:
-        # with open("../isl/sat_color_16.json", "r") as f:
         with open(_topologyFile, "r") as f:
             data = json.load(f)
             self.hash_number = data[str(self.__ownernode.nodeID)]
+            self.num_color = len(set(data.values()))
         self.__hash_buckets = None 
 
 
@@ -810,8 +806,8 @@ class ModelCDNProvider(IModel):
                     new_hop[idx // 2] += 1
                     l.append((int(neigh), dist + 1, new_hop))
                     seen.add(int(neigh))
-        self.__hash_buckets = [-1 for _ in range(NUM_COLOR)] 
-        self.__hash_hops = [-1 for _  in range(NUM_COLOR)]
+        self.__hash_buckets = [-1 for _ in range(self.num_color)] 
+        self.__hash_hops = [-1 for _  in range(self.num_color)]
         for i in range(len(self.__hash_buckets)):
             if i in d:
                 self.__hash_buckets[i] = d[i] 
@@ -829,15 +825,15 @@ class ModelCDNProvider(IModel):
         # return 
         if self.__hash_buckets == None:
             self.__hash_bfs()
-        distributed_requests = [[] for _ in range(NUM_COLOR)]
+        distributed_requests = [[] for _ in range(self.num_color)]
         for req in requests:
-            hash_id = int(hashlib.md5(req.id.encode()).hexdigest(), 16) % NUM_COLOR
+            hash_id = int(hashlib.md5(req.id.encode()).hexdigest(), 16) % self.num_color
             hash_bucket_idx = hash_id
-            for i in range(NUM_COLOR):
+            for i in range(self.num_color):
                 if self.__hash_buckets[hash_bucket_idx] != -1:
                     break
                 else:
-                    hash_bucket_idx = (hash_bucket_idx + 1) % NUM_COLOR
+                    hash_bucket_idx = (hash_bucket_idx + 1) % self.num_color
             assert self.__hash_buckets[hash_bucket_idx] != -1
             distributed_requests[hash_bucket_idx].append(req)
         for i, reqs in enumerate(distributed_requests):
